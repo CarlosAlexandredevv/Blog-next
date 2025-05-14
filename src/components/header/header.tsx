@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 import { ActiveLink } from '../active-link';
 import Link from 'next/link';
-import { Logo } from '../logo/logo';
+import { Logo } from '../logo';
 export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/95 backdrop-blur supports-[backdrop-filters]:bg-background/60">
