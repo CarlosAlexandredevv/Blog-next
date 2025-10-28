@@ -1,7 +1,8 @@
-import { Button } from '../ui/button';
-import { ActiveLink } from '../active-link';
+import { Button } from '@/components/ui/button';
+import { ActiveLink } from '@/components/active-link';
 import Link from 'next/link';
-import { Logo } from '../logo';
+
+import { Logo } from '@/components/logo';
 export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/95 backdrop-blur supports-[backdrop-filters]:bg-background/60">
