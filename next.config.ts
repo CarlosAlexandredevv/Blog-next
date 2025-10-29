@@ -1,20 +1,9 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import type { NextConfig } from 'next';
+import { withContentlayer } from 'next-contentlayer';
 
-export const Post = defineDocumentType(() => ({
-  name: 'Post',
-  filePathPattern: `**/*.md`,
-  fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    description: { type: 'string', required: true },
-    image: { type: 'string', required: true },
-  },
-  computedFields: {
-    slug: {
-      type: 'string',
-      resolve: (doc) => doc._raw.sourceFileName.replace('.md', ''),
-    },
-  },
-}));
+const nextConfig: NextConfig = {
+  /* config options here */
+  reactStrictMode: true,
+};
 
-export default makeSource({ contentDirPath: 'posts', documentTypes: [Post] });
+export default withContentlayer(nextConfig);
