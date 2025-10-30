@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
-import { SearchIcon } from 'lucide-react';
+import { CircleX, SearchIcon } from 'lucide-react';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 export function Search() {
   const router = useRouter();
-  const query = router.query.q as string;
+  const query = (router.query.q as string) ?? '';
 
   const handleSearch = useCallback(
     (event: React.FormEvent) => {
@@ -17,17 +17,24 @@ export function Search() {
     [query, router],
   );
 
-  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
     const newQuery = event.target.value;
 
     router.push(`/blog?q=${encodeURIComponent(newQuery)}`, undefined, {
       shallow: true,
       scroll: false,
     });
-  };
+  }
+
+  function resetSearch() {
+    router.push('/blog', undefined, {
+      shallow: true,
+      scroll: false,
+    });
+  }
 
   return (
-    <form onSubmit={handleSearch} className="relative group">
+    <form onSubmit={handleSearch} className="relative group w-full md:w-60">
       <SearchIcon
         className={cn(
           'text-gray-300 absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors duration-200 group-focus-within:text-blue-300',
@@ -38,9 +45,17 @@ export function Search() {
       <input
         type="text"
         placeholder="Buscar"
+        value={query}
         onChange={handleQueryChange}
-        className="h-10 w-72 bg-transparent border border-gray-400 pl-9 text-gray-100 rounded-md text-body-sm outline-none transition-all duration-200 focus-within:border-blue-300 focus-within:ring-1 focus-within:ring-blue-300 placeholder:text-gray-300 placeholder:text-body-sm"
+        className="w-full h-10 md:w-60 bg-transparent border border-gray-400 pl-9 text-gray-100 rounded-md text-body-sm outline-none transition-all duration-200 focus-within:border-blue-300 focus-within:ring-1 focus-within:ring-blue-300 placeholder:text-gray-300 placeholder:text-body-sm"
       />
+
+      {query && (
+        <CircleX
+          className="absolute size-4 top-1/2 -translate-y-1/2 right-3 text-gray-300"
+          onClick={resetSearch}
+        />
+      )}
     </form>
   );
 }
