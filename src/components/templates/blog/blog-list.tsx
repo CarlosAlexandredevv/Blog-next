@@ -1,7 +1,7 @@
 import { Search } from '@/components/search';
 import { useRouter } from 'next/router';
 import { PostCard } from './components/post-card';
-
+import { PostGridCard } from './components/post-grid-card/post-grid-card';
 const posts = [
   {
     title: 'Transformando seu negócio em uma loja virtual',
@@ -26,7 +26,7 @@ export function BlogList() {
 
   return (
     <div className="flex flex-col py-24 flex-grow h-full">
-      <header>
+      <header className="pb-14">
         <div className="container space-y-6 flex flex-col items-start justify-between md:flex-row md:items-end lg:items-end">
           <div className="flex flex-col gap-4 md:px-0">
             {/* TAG */}
@@ -45,9 +45,11 @@ export function BlogList() {
       </header>
 
       {/* Listagem de posts */}
-      {posts.map((post) => (
-        <PostCard key={post.slug} {...post} />
-      ))}
+      <PostGridCard>
+        {posts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
+      </PostGridCard>
     </div>
   );
 }
