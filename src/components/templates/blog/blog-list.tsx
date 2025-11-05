@@ -2,20 +2,7 @@ import { Search } from '@/components/search';
 import { useRouter } from 'next/router';
 import { PostCard } from './components/post-card';
 import { PostGridCard } from './components/post-grid-card/post-grid-card';
-const posts = [
-  {
-    title: 'Transformando seu negócio em uma loja virtual',
-    description:
-      'Se você está buscando uma maneira simples e eficaz de vender seus produtos online...',
-    date: '20/12/2024',
-    slug: 'transformando',
-    image: '/assets/primeiro-post.png',
-    author: {
-      avatar: '/customer-01.png',
-      name: 'Aspen Dokidis',
-    },
-  },
-];
+import { allPosts } from 'contentlayer/generated';
 
 export function BlogList() {
   const router = useRouter();
@@ -23,6 +10,8 @@ export function BlogList() {
   const pageTitle = query
     ? `Resultados de busca para "${query}"`
     : 'Dicas e estratégias para impulsionar seu negócio';
+
+  const posts = allPosts;
 
   return (
     <div className="flex flex-col py-24 flex-grow h-full">

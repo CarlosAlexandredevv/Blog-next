@@ -6,6 +6,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const formattedDate = new Date(post.date).toLocaleDateString('pt-BR');
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -16,7 +17,7 @@ export function PostCard({ post }: PostCardProps) {
         {/* Imagem Container */}
         <div className="relative">
           <div className="absolute top-0 right-0 px-3 py-1 bg-gray-600 backdrop-blur-sm rounded-bl-[10px]">
-            <span className="text-body-xs text-gray-300">{post.date}</span>
+            <span className="text-body-xs text-gray-300">{formattedDate}</span>
           </div>
           <Image
             src={post.image}
