@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Post } from '@/model/post';
+import { Avatar } from '@/components/avatar';
 interface PostCardProps {
   post: Post;
 }
@@ -42,12 +43,14 @@ export function PostCard({ post }: PostCardProps) {
         {/* Post footer */}
         <div className="flex items-center gap-3 border-t border-gray-400 py-4">
           <div className="relative h-5 w-5 md:h-6 md:w-6 overflow-hidden rounded-full border-blue-200 border-[1px]">
-            <Image
-              src={post.author.avatar}
-              alt=""
-              fill
-              className="object-cover rounded-md"
-            />
+            <Avatar.Container>
+              <Avatar.Image
+                src={post.author.avatar}
+                alt={post.author.name}
+                size="xs"
+              />
+              <Avatar.Title>{post.author.name}</Avatar.Title>
+            </Avatar.Container>
           </div>
           <span className="text-body-sm text-gray-300">{post.author.name}</span>
         </div>
