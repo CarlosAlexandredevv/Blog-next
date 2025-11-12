@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
   return (
-    <section className="container relative flex items-center justify-center mt-24 md:mt-16">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative flex items-center justify-center mt-24 md:mt-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[20rem] md:h-[36rem] items-center text-center md:text-left">
         <div className="flex flex-col items-center justify-center gap-4 md:items-start lg:items-start">
           <h1 className="text-gray-100 text-heading-hg font-sans">

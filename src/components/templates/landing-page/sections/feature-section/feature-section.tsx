@@ -9,7 +9,7 @@ import {
 } from '@/components/card-feature-section';
 export function FeatureSection() {
   return (
-    <section className="container bg-gray-700 grid gap-6 md:grid-cols-2 pb-8 pt-8 md:py-10">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  bg-gray-700 grid gap-6 md:grid-cols-2 pb-8 pt-8 md:py-10">
       <FeatureCardFlex>
         <FeatureCardBadge>Simples</FeatureCardBadge>
         <FeatureCardTitle>
