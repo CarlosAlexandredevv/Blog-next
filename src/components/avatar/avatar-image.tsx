@@ -9,5 +9,14 @@ export function AvatarImage({
   height = 40,
   ...rest
 }: AvatarImageProps) {
-  return <Image {...rest} src={src} alt={alt} width={width} height={height} />;
+  return (
+    <Image
+      className="rounded-full object-cover"
+      {...rest}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+    />
+  );
 }
