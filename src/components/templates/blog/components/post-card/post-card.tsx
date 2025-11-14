@@ -30,7 +30,7 @@ export function PostCard({ post }: PostCardProps) {
         </div>
 
         {/* Post info */}
-        <div className="px-2 mt-4 space-y-4">
+        <div className="px-2 mt-4 space-y-4 mb-2">
           <h2 className="text-heading-sm text-gray-100 line-clamp-3">
             {post.title}
           </h2>
@@ -42,16 +42,13 @@ export function PostCard({ post }: PostCardProps) {
 
         {/* Post footer */}
         <div className="flex items-center gap-3 border-t border-gray-400 py-4">
-          <div className="relative h-5 w-5 md:h-6 md:w-6 overflow-hidden rounded-full border-blue-200 border-[1px]">
-            <Avatar.Container>
-              <Avatar.Image
-                src={post.author.avatar}
-                alt={post.author.name}
-                size="xs"
-              />
-              <Avatar.Title>{post.author.name}</Avatar.Title>
-            </Avatar.Container>
-          </div>
+          <Avatar.Container>
+            <Avatar.Image
+              src={post.author.avatar}
+              alt={post.author.name}
+              size="xs"
+            />
+          </Avatar.Container>
           <span className="text-body-sm text-gray-300">{post.author.name}</span>
         </div>
       </div>
