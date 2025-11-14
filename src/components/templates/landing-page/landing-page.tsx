@@ -3,7 +3,6 @@ import {
   FeatureSection,
   SupportSection,
   CustomerStorySection,
-  CallToAction,
 } from './sections';
 
 export function LandingPage() {
@@ -13,7 +12,6 @@ export function LandingPage() {
       <FeatureSection />
       <SupportSection />
       <CustomerStorySection />
-      <CallToAction />
     </article>
   );
 }
