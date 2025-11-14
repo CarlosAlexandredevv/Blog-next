@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { Avatar } from '@/components/avatar';
 import { Markdown } from '@/components/markdown/markdown';
 import { Button } from '@/components/ui/button';
+import { useShare } from '@/hooks/use-share';
 
 export default function BlogPostPage() {
   const router = useRouter();
@@ -22,6 +23,14 @@ export default function BlogPostPage() {
   )!;
 
   const publishedDate = new Date(post?.date).toLocaleDateString('pt-BR');
+
+  const postUrl = `https://site.set/blog/${slug}`;
+
+  const { shareButtons } = useShare({
+    url: postUrl,
+    title: post?.title,
+    text: post?.description,
+  });
 
   return (
     <main className="mt-32 text-gray-100">
@@ -68,25 +77,31 @@ export default function BlogPostPage() {
                   <Avatar.Title>{post?.author.name}</Avatar.Title>
                   <Avatar.Description>
                     Publicado em {''}
-                    <time dateTime={post.date}>{publishedDate}</time>
+                    <time dateTime={post?.date}>{publishedDate}</time>
                   </Avatar.Description>
                 </Avatar.Content>
               </Avatar.Container>
             </header>
 
             <div className="prose prose-invert max-w-none px-4 mt-12 md:px-6 lg:px-12">
-              <Markdown content={post.body.raw} />
+              <Markdown content={post?.body.raw} />
             </div>
           </article>
           <aside className="space-y-6">
-            <div className="rounded-lg bg-gray-700 p-4 md:p-6">
+            <div className="rounded-lg bg-gray-700">
               <h2 className="mb-4 text-heading-xs text-gray-100">
                 Compartilhar
               </h2>
               <div className="space-y-3">
-                {[{ key: '1', providerName: 'LinkedIn' }].map((provider) => (
-                  <Button key={provider.key} variant="outline">
-                    {provider.providerName}
+                {shareButtons.map((provider) => (
+                  <Button
+                    key={provider.provider}
+                    onClick={() => provider.action()}
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    {provider.icon}
+                    {provider.name}
                   </Button>
                 ))}
               </div>
